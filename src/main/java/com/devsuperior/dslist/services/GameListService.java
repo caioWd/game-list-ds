@@ -1,2 +1,25 @@
-package com.devsuperior.dslist.services;public class GameListService {
+package com.devsuperior.dslist.services;
+
+import com.devsuperior.dslist.dto.GameListDTO;
+import com.devsuperior.dslist.entities.GameList;
+import com.devsuperior.dslist.repository.GameListRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+public class GameListService {
+
+    @Autowired
+    private GameListRepository gameListRepository;
+
+    @Transactional
+    public List<GameListDTO> findAll(){
+        List<GameList> list = gameListRepository.findAll();
+        List<GameListDTO> dto = list.stream().map(x -> new GameListDTO(x)).toList();
+        return dto;
+    }
+
 }
