@@ -1,4 +1,4 @@
-package com.devsuperior.dslist.service;
+package com.devsuperior.dslist.services;
 
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
@@ -16,7 +16,7 @@ public class GameService {
 
     public List<GameMinDTO> findAll(){
         List<Game> games = gameRepository.findAll();
-        List<GameMinDTO> dto = result.stream().map( x -> new GameMinDTO(x)).toList();
+        List<GameMinDTO> dto = games.stream().map(x-> new GameMinDTO(x)).toList();
         return dto;
     }
 }
